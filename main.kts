@@ -38,7 +38,21 @@ val r2 = process("FOO", { 3.times({ r2_message.toUpperCase() }) })// call proces
 
 
 // write an enum-based state machine between talking and thinking
-enum class Philosopher { }
+enum class Philosopher {
+
+    THINKING {
+        override fun signal() = TALKING
+        override fun toString() = "Deep thoughts...."
+    },
+
+    TALKING {
+        override fun signal() = THINKING
+        override fun toString() = "Allow me to suggest an idea..."
+    };
+
+    abstract fun signal(): Philosopher
+
+}
 
 // create an class "Command" that can be used as a function (provide an "invoke()" function)
 // that takes a single parameter ("message" of type String)
@@ -68,7 +82,7 @@ print("Seneca, talk! ")
 seneca = seneca.signal()
 println(if (seneca.toString() == "Allow me to suggest an idea...") "." else "!")
 
-print("Command tests: ")
+/* print("Command tests: ")
 print(if (Command("")("") == "") "." else "!")
 print(if (Command("> ")("Hello!") == "> Hello!") "." else "!")
-println("")
+println("") */
