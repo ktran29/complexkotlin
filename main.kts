@@ -18,20 +18,22 @@ val mapFoldResults = (1..15).map {
 
 // This is a utility function for your use as you choose, and as an
 // example of an extension method
-fun Int.times(block: () -> Unit): Unit {
+fun Int.times(block: () -> String): String {
+    var result = "";
     for (it in 1..this) {
-        block()
+        result += block()
     }
+    return result
 }
 
 // Use this function
 fun process(message: String, block: (String) -> String): String {
     return ">>> ${message}: {" + block(message) + "}"
 }
-val r1 = "" // call process() with message "FOO" and a block that returns "BAR"
+val r1 = process("FOO", { "BAR" }) // call process() with message "FOO" and a block that returns "BAR"
 
 val r2_message = "wooga"
-val r2 = "" // call process() with message "FOO" and a block that upper-cases
+val r2 = process("FOO", { 3.times({ r2_message.toUpperCase() }) })// call process() with message "FOO" and a block that upper-cases
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
 
@@ -51,7 +53,7 @@ class Command(val prompt: String) {
 // ================================
 println("map fold test: " + if (mapFoldResults == "FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ") "." else "!")
 
-/* println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
+println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
 
 println("r2 test: " + if (r2 == ">>> FOO: {WOOGAWOOGAWOOGA}") "." else "!")
 
@@ -69,4 +71,4 @@ println(if (seneca.toString() == "Allow me to suggest an idea...") "." else "!")
 print("Command tests: ")
 print(if (Command("")("") == "") "." else "!")
 print(if (Command("> ")("Hello!") == "> Hello!") "." else "!")
-println("") */
+println("")
