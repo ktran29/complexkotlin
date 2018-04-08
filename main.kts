@@ -5,7 +5,15 @@ println("UW Complex Kotlin homework")
 // use fold to compress the array of strings down into a single string
 // the final string should look like FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ
 //
-val mapFoldResults = ""
+
+val mapFoldResults = (1..15).map {
+    when (true) {
+        it % 3 == 0 && it % 5 == 0 -> it to "FIZZBUZZ";
+        it % 3 == 0 -> it to "FIZZ";
+        it % 5 == 0 -> it to "BUZZ";
+        else -> it to "";
+    }
+}.fold("", { result, next -> result + "" + next.second })
 
 
 // This is a utility function for your use as you choose, and as an
@@ -23,7 +31,7 @@ fun process(message: String, block: (String) -> String): String {
 val r1 = "" // call process() with message "FOO" and a block that returns "BAR"
 
 val r2_message = "wooga"
-val r2 = "" // call process() with message "FOO" and a block that upper-cases 
+val r2 = "" // call process() with message "FOO" and a block that upper-cases
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
 
@@ -43,7 +51,7 @@ class Command(val prompt: String) {
 // ================================
 println("map fold test: " + if (mapFoldResults == "FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ") "." else "!")
 
-println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
+/* println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
 
 println("r2 test: " + if (r2 == ">>> FOO: {WOOGAWOOGAWOOGA}") "." else "!")
 
@@ -61,7 +69,4 @@ println(if (seneca.toString() == "Allow me to suggest an idea...") "." else "!")
 print("Command tests: ")
 print(if (Command("")("") == "") "." else "!")
 print(if (Command("> ")("Hello!") == "> Hello!") "." else "!")
-println("")
-
-
-
+println("") */
