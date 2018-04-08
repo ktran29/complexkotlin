@@ -36,6 +36,13 @@ val r2_message = "wooga"
 val r2 = process("FOO", { 3.times({ r2_message.toUpperCase() }) })// call process() with message "FOO" and a block that upper-cases
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
+/* --EXTRA CREDIT--
+Seneca the Younger was a few things, but he was most well known for
+being a Roman philosopher under the school of Stoicism.
+
+The philosophy behind Stoicism is essentially trying to help you be strong,
+steadfast, and in control of your emotions when faced with terrible adversity.
+*/
 
 // write an enum-based state machine between talking and thinking
 enum class Philosopher {
